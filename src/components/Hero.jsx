@@ -16,7 +16,7 @@ const Hero = ({ userPhoto }) => {
       <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div className="order-2 md:order-1">
           <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
-            Hi, I'm Yogeshwaran,
+            Hi, I'm Yogeshwaran.
           </h2>
           <h3 className="text-4xl md:text-6xl font-bold bg-linear-to-r from-purple-500 via-blue-400 to-cyan-400 bg-clip-text text-transparent mb-8">
             Full-Stack Software Engineer
