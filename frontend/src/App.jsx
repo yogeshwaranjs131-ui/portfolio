@@ -493,10 +493,13 @@ function App() {
 
   const fetchProjects = useCallback(() => {
     setIsProjectsLoading(true);
-    fetch(`${API_BASE_URL}/api/projects`)
-      .then(res => res.json())
+    fetch(`${API_BASE_URL}/api/projects`, { signal: AbortSignal.timeout(5000) })
+      .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
       .then(data => {
-        setDynamicProjects(data);
+        setDynamicProjects(Array.isArray(data) ? data : []);
         setIsProjectsLoading(false);
       })
       .catch(() => {
