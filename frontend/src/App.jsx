@@ -482,8 +482,8 @@ function App() {
   const canvasRef = useRef(null);
 
   // Define missing URLs/constants
-  const githubUrl = "https://github.com/yourusername"; 
-  const linkedinUrl = "https://linkedin.com/in/yourusername";
+  const githubUrl = "https://github.com/yogeshwaranjs"; // உங்கள் GitHub லிங்க்
+  const linkedinUrl = "https://linkedin.com/in/yogeshwaranjs"; // உங்கள் LinkedIn லிங்க்
   const profilePhotoUrl = "/myphoto.png.jpeg"; // Add your actual path
   const resumeUrl = "#"; 
   const nsdcCertificateImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/NSDC_Logo.png/640px-NSDC_Logo.png";
