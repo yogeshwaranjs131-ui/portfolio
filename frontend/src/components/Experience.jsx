@@ -36,7 +36,7 @@ const Experience = ({ experiences }) => {
                 </div>
                 <span className="px-4 py-1 bg-blue-50 text-blue-700 rounded-full text-[10px] font-bold h-fit w-fit">{exp.period}</span>
               </div>
-              <p className="text-slate-500 leading-relaxed text-sm md:text-base md:ml-18">{exp.description}</p>
+              <p className="text-slate-500 leading-relaxed text-sm md:text-base md:ml-20">{exp.description}</p>
             </motion.div>
           ))}
         </div>
