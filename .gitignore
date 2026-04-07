@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Production build
+frontend/dist/
+
+# Environment Variables (மிக முக்கியம்)
+.env
+frontend/.env
+frontend/.env.local
+
+# Misc
+.DS_Store

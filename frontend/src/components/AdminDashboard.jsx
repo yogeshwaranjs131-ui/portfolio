@@ -32,9 +32,10 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
   };
 
   const handleSave = async () => {
-    const method = editingProject.id ? 'PUT' : 'POST';
-    const url = editingProject.id
-      ? `${API_BASE_URL}/api/admin/projects/${editingProject.id}`
+    const projectId = editingProject._id || editingProject.id;
+    const method = projectId ? 'PUT' : 'POST';
+    const url = projectId
+      ? `${API_BASE_URL}/api/admin/projects/${projectId}`
       : `${API_BASE_URL}/api/admin/projects`;
 
     try {
@@ -221,7 +222,7 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
 
           <div className="space-y-4">
             {projects.map((project) => (
-              <div key={project.id} className="bg-slate-700 rounded-xl p-6">
+              <div key={project._id || project.id} className="bg-slate-700 rounded-xl p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-bold mb-2">{project.title}</h3>
@@ -254,7 +255,7 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
                       <Edit className="w-5 h-5" />
                     </button>
                     <button
-                      onClick={() => handleDelete(project.id)}
+                      onClick={() => handleDelete(project._id || project.id)}
                       className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-all"
                     >
                       <Trash2 className="w-5 h-5" />

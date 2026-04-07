@@ -488,10 +488,8 @@ function App() {
   const resumeUrl = "#"; 
   const nsdcCertificateImageUrl = "/nsdc-logo.png";
 
-  // Replace with your actual backend URL to avoid fetch errors
-  const API_BASE_URL = import.meta.env.PROD 
-    ? 'https://your-backend-name.onrender.com' 
-    : 'http://localhost:5000';
+  // Netlify-ல் VITE_API_URL என்ற Environment Variable-ஐப் பயன்படுத்த இது உதவும்
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://portfolio-31t2.onrender.com';
 
   const fetchProjects = useCallback(() => {
     setIsProjectsLoading(true);
@@ -513,7 +511,7 @@ function App() {
   }, [fetchProjects]);
 
   // URL-ல் /my-portfolio இருந்தால் அதை basename-ஆக எடுத்துக்கொள், இல்லையெனில் காலியாக விடு
-  const basename = window.location.pathname.startsWith('/my-portfolio') ? '/my-portfolio' : '';
+  const basename = window.location.pathname.includes('/my-portfolio') ? '/my-portfolio' : '';
 
   return (
     <Router basename={basename || undefined}>
