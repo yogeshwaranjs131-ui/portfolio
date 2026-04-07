@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Native smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typing cursor animation */
+.typing-cursor::after {
+  content: "|";
+  animation: blink 1s step-start infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
