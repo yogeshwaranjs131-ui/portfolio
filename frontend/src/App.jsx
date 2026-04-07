@@ -486,7 +486,7 @@ function App() {
   const linkedinUrl = "https://linkedin.com/in/yourusername";
   const profilePhotoUrl = "/myphoto.png.jpeg"; // Add your actual path
   const resumeUrl = "#"; 
-  const nsdcCertificateImageUrl = "/nsdc-logo.png";
+  const nsdcCertificateImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/NSDC_Logo.png/640px-NSDC_Logo.png";
 
   // Netlify-ல் VITE_API_URL என்ற Environment Variable-ஐப் பயன்படுத்த இது உதவும்
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://portfolio-31t2.onrender.com';
