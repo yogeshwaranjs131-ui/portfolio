@@ -1,17 +1,84 @@
-import React, { useState } from 'react';
-import { Plus, Edit, Trash2, LogOut, Save, X } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Plus, Edit, Trash2, LogOut, Save, X, Loader, CheckCircle, AlertCircle } from 'lucide-react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
+  const [localProjects, setLocalProjects] = useState(projects);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     technologies: '',
     githubUrl: '',
+    backendGithubUrl: '',
     liveUrl: '',
-    imageUrl: ''
+    imageUrl: '',
+    featured: false
   });
+  const [autoSaveStatus, setAutoSaveStatus] = useState('idle'); // idle, saving, saved, error
+
+  useEffect(() => {
+    setLocalProjects(projects);
+  }, [projects]);
+
+  const handleSave = useCallback(async () => {
+    if (!editingProject) return;
+
+    setAutoSaveStatus('saving');
+    const projectId = editingProject._id || editingProject.id;
+    const method = projectId && typeof projectId === 'string' ? 'PUT' : 'POST';
+    const url = method === 'PUT'
+      ? `${API_BASE_URL}/api/admin/projects/${projectId}`
+      : `${API_BASE_URL}/api/admin/projects`;
+
+    const payload = {
+      ...editingProject,
+      ...formData,
+      technologies: (formData.technologies || '').split(',').map(tech => tech.trim()).filter(t => t !== ''),
+      featured: formData.featured,
+      // Remove icon from payload as it's a non-serializable React component
+      icon: undefined
+    };
+
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        setAutoSaveStatus('saved');
+        fetchProjects();
+      } else {
+        setAutoSaveStatus('error');
+        console.error('Failed to save project:', await response.text());
+      }
+    } catch (error) {
+      setAutoSaveStatus('error');
+      console.error('Error saving project:', error);
+    }
+  }, [editingProject, formData, API_BASE_URL, fetchProjects]);
+
+  useEffect(() => {
+    if (!isEditing) {
+      setAutoSaveStatus('idle');
+      return;
+    }
+
+    setAutoSaveStatus('typing');
+    const handler = setTimeout(() => {
+      handleSave();
+    }, 2000); // 2 seconds debounce
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [formData, isEditing, handleSave]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
@@ -25,47 +92,13 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       description: project.description,
       technologies: project.technologies?.join(', ') || '',
       githubUrl: project.githubUrl || '',
+      backendGithubUrl: project.backendGithubUrl || '',
       liveUrl: project.liveUrl || '',
-      imageUrl: project.imageUrl || ''
+      imageUrl: project.imageUrl || '',
+      featured: project.featured || false,
+      icon: project.icon || null
     });
     setIsEditing(true);
-  };
-
-  const handleSave = async () => {
-    const projectId = editingProject._id || editingProject.id;
-    const method = projectId ? 'PUT' : 'POST';
-    const url = projectId
-      ? `${API_BASE_URL}/api/admin/projects/${projectId}`
-      : `${API_BASE_URL}/api/admin/projects`;
-
-    try {
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
-        },
-        body: JSON.stringify({
-          ...editingProject,
-          title: formData.title,
-          description: formData.description,
-          technologies: (formData.technologies || '').split(',').map(tech => tech.trim()).filter(t => t !== ''),
-          githubUrl: formData.githubUrl,
-          liveUrl: formData.liveUrl,
-          imageUrl: formData.imageUrl
-        })
-      });
-
-      if (response.ok) {
-        setIsEditing(false);
-        setEditingProject(null);
-        fetchProjects();
-      } else {
-        alert('Failed to save project');
-      }
-    } catch {
-      alert('Error saving project');
-    }
   };
 
   const handleDelete = async (projectId) => {
@@ -96,8 +129,11 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       description: '',
       technologies: [],
       githubUrl: '',
+      backendGithubUrl: '',
       liveUrl: '',
-      imageUrl: ''
+      imageUrl: '',
+      featured: false,
+      icon: null
     };
     setEditingProject(newProject);
     setFormData({
@@ -105,8 +141,11 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       description: '',
       technologies: '',
       githubUrl: '',
+      backendGithubUrl: '',
       liveUrl: '',
-      imageUrl: ''
+      imageUrl: '',
+      featured: false,
+      icon: null
     });
     setIsEditing(true);
   };
@@ -119,9 +158,46 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       description: '',
       technologies: '',
       githubUrl: '',
+      backendGithubUrl: '',
       liveUrl: '',
-      imageUrl: ''
+      imageUrl: '',
+      featured: false,
+      icon: null
     });
+  };
+
+  const onDragEnd = async (result) => {
+    const { destination, source } = result;
+    if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index)) {
+      return;
+    }
+
+    const reorderedProjects = Array.from(localProjects);
+    const [removed] = reorderedProjects.splice(source.index, 1);
+    reorderedProjects.splice(destination.index, 0, removed);
+
+    setLocalProjects(reorderedProjects);
+
+    const projectIds = reorderedProjects.map(p => p._id || p.id);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/admin/projects/reorder`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        },
+        body: JSON.stringify({ projectIds })
+      });
+
+      if (!response.ok) {
+        setLocalProjects(projects); // Revert on failure
+        alert('Failed to reorder projects.');
+      }
+    } catch (error) {
+      setLocalProjects(projects); // Revert on error
+      alert('Error reordering projects.');
+    }
   };
 
   return (
@@ -152,9 +228,17 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
 
           {isEditing && (
             <div className="bg-slate-700 rounded-xl p-6 mb-6">
-              <h3 className="text-xl font-bold mb-4">
-                {editingProject.id ? 'Edit Project' : 'Add New Project'}
-              </h3>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold">
+                  {editingProject._id ? 'Edit Project' : 'Add New Project'}
+                </h3>
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  {autoSaveStatus === 'saving' && <> <Loader className="w-4 h-4 animate-spin" /> Saving... </>}
+                  {autoSaveStatus === 'saved' && <> <CheckCircle className="w-4 h-4 text-green-500" /> Saved </>}
+                  {autoSaveStatus === 'error' && <> <AlertCircle className="w-4 h-4 text-red-500" /> Error </>}
+                  {autoSaveStatus === 'typing' && <span className="italic">Typing...</span>}
+                </div>
+              </div>
               <div className="grid md:grid-cols-2 gap-4 mb-4">
                 <input
                   type="text"
@@ -178,12 +262,19 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
                 rows="4"
                 className="w-full bg-slate-600 border border-slate-500 rounded-xl p-4 text-white focus:outline-none focus:border-blue-600 mb-4"
               />
-              <div className="grid md:grid-cols-3 gap-4 mb-4">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                 <input
                   type="url"
-                  placeholder="GitHub URL"
+                  placeholder="Frontend GitHub URL"
                   value={formData.githubUrl}
                   onChange={(e) => setFormData({ ...formData, githubUrl: e.target.value })}
+                  className="bg-slate-600 border border-slate-500 rounded-xl p-4 text-white focus:outline-none focus:border-blue-600"
+                />
+                <input
+                  type="url"
+                  placeholder="Backend GitHub URL"
+                  value={formData.backendGithubUrl}
+                  onChange={(e) => setFormData({ ...formData, backendGithubUrl: e.target.value })}
                   className="bg-slate-600 border border-slate-500 rounded-xl p-4 text-white focus:outline-none focus:border-blue-600"
                 />
                 <input
@@ -201,14 +292,19 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
                   className="bg-slate-600 border border-slate-500 rounded-xl p-4 text-white focus:outline-none focus:border-blue-600"
                 />
               </div>
+              <div className="flex items-center gap-2 mb-6">
+                <input
+                  type="checkbox"
+                  id="featured-checkbox"
+                  checked={formData.featured}
+                  onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
+                  className="h-5 w-5 rounded bg-slate-600 border-slate-500 text-blue-500 focus:ring-blue-600"
+                />
+                <label htmlFor="featured-checkbox" className="font-bold text-slate-300">
+                  Featured Project
+                </label>
+              </div>
               <div className="flex gap-4">
-                <button
-                  onClick={handleSave}
-                  className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition-all flex items-center gap-2"
-                >
-                  <Save className="w-5 h-5" />
-                  Save
-                </button>
                 <button
                   onClick={handleCancel}
                   className="bg-gray-600 text-white px-6 py-3 rounded-xl hover:bg-gray-700 transition-all flex items-center gap-2"
@@ -220,51 +316,66 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
             </div>
           )}
 
-          <div className="space-y-4">
-            {projects.map((project) => (
-              <div key={project._id || project.id} className="bg-slate-700 rounded-xl p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-slate-300 mb-2">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      {project.technologies?.map((tech, index) => (
-                        <span key={index} className="bg-blue-600 px-3 py-1 rounded-full text-sm">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex gap-4 text-sm text-slate-400">
-                      {project.githubUrl && (
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-                          GitHub
-                        </a>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="projects">
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-4">
+                  {localProjects.map((project, index) => (
+                    <Draggable key={project._id || project.id} draggableId={String(project._id || project.id)} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className={`bg-slate-700 rounded-xl p-6 transition-shadow ${snapshot.isDragging ? 'shadow-2xl shadow-blue-500/30' : ''}`}
+                        >
+                          <div className="flex justify-between items-start mb-4">
+                            <div>
+                              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                              <p className="text-slate-300 mb-2">{project.description}</p>
+                              <div className="flex flex-wrap gap-2 mb-2">
+                                {project.technologies?.map((tech, index) => (
+                                  <span key={index} className="bg-blue-600 px-3 py-1 rounded-full text-sm">
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                              <div className="flex gap-4 text-sm text-slate-400">
+                                {project.githubUrl && (
+                                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                                    GitHub
+                                  </a>
+                                )}
+                                {project.backendGithubUrl && (
+                                  <a href={project.backendGithubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                                    Backend GitHub
+                                  </a>
+                                )}
+                                {project.liveUrl && (
+                                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                                    Live Demo
+                                  </a>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex gap-2">
+                              <button onClick={() => handleEdit(project)} className="bg-yellow-600 text-white p-2 rounded-lg hover:bg-yellow-700 transition-all">
+                                <Edit className="w-5 h-5" />
+                              </button>
+                              <button onClick={() => handleDelete(project._id || project.id)} className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-all">
+                                <Trash2 className="w-5 h-5" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       )}
-                      {project.liveUrl && (
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-                          Live Demo
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleEdit(project)}
-                      className="bg-yellow-600 text-white p-2 rounded-lg hover:bg-yellow-700 transition-all"
-                    >
-                      <Edit className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(project._id || project.id)}
-                      className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-all"
-                    >
-                      <Trash2 className="w-5 h-5" />
-                    </button>
-                  </div>
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
                 </div>
-              </div>
-            ))}
-          </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
     </div>

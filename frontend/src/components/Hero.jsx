@@ -38,10 +38,10 @@ const Hero = ({ displayText, resumeUrl, linkedinUrl, githubUrl, profilePhotoUrl 
               Contact Me <Mail className="w-5 h-5" />
             </a>
             <div className="flex gap-2">
-              <a href={linkedinUrl} target="_blank" className="p-4 bg-slate-900 border border-slate-800 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-sm flex items-center justify-center">
+              <a href={linkedinUrl} target="_blank" rel="noreferrer" className="p-4 bg-slate-900 border border-slate-800 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-sm flex items-center justify-center">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href={githubUrl} target="_blank" className="px-8 py-4 bg-slate-900 border border-slate-800 text-white rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center gap-2 shadow-sm">
+              <a href={githubUrl} target="_blank" rel="noreferrer" className="px-8 py-4 bg-slate-900 border border-slate-800 text-white rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center gap-2 shadow-sm">
                 View Code <Github className="w-5 h-5" />
               </a>
             </div>

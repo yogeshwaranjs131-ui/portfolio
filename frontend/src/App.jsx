@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUp, X, Music, Utensils, Columns, ExternalLink, CheckCircle, Globe } from 'lucide-react';
+import {
+  ArrowUp, X, Music, Utensils, Columns, ExternalLink, CheckCircle, Globe,
+  Briefcase, Plane, Car
+} from 'lucide-react';
 
 import './App.css'
 
@@ -57,6 +60,33 @@ const Portfolio = ({ dynamicProjects, isProjectsLoading, API_BASE_URL, githubUrl
 
   const fallbackProjects = [
     {
+      title: "Hotel Management Software",
+      description: "A comprehensive hotel management system for room booking, guest management, and billing. Features an intuitive dashboard for staff.",
+      tech: ["React", "Node.js", "MongoDB", "JWT"],
+      image: "https://images.unsplash.com/photo-1563911302283-d256c5824135?w=800&q=80",
+      icon: <Briefcase className="w-5 h-5 text-blue-600" />,
+      liveLink: "#",
+      featured: true
+    },
+    {
+      title: "Flight Ticket Booking",
+      description: "A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.",
+      tech: ["React", "Amadeus API", "Context API", "Tailwind CSS"],
+      image: "https://images.unsplash.com/photo-1609951659574-103b73554b01?w=800&q=80",
+      icon: <Plane className="w-5 h-5 text-blue-600" />,
+      liveLink: "#",
+      featured: true
+    },
+    {
+      title: "Car Rental Software",
+      description: "A complete car rental solution with vehicle availability tracking, online booking, and payment processing.",
+      tech: ["React", "Redux", "Node.js", "Stripe API"],
+      image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80",
+      icon: <Car className="w-5 h-5 text-blue-600" />,
+      liveLink: "#",
+      featured: true
+    },
+    {
       title: "Music Streaming App",
       description: "A premium audio platform with high-fidelity streaming, playlist curation, and a modern 'Glassmorphic' UI design using React.",
       tech: ["React", "Web Audio API", "Context API", "Tailwind"],
@@ -86,127 +116,125 @@ const Portfolio = ({ dynamicProjects, isProjectsLoading, API_BASE_URL, githubUrl
   const displayProjects = Array.isArray(dynamicProjects) && dynamicProjects.length > 0 ? dynamicProjects : fallbackProjects;
 
   useEffect(() => {
-    try {
-      const canvas = canvasRef?.current;
-      if (!canvas) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
 
-      let animationFrameId;
-      const mouse = { x: null, y: null };
+    let animationFrameId;
+    const mouse = { x: null, y: null, isOver: false };
+    let lastMouseMove = 0;
 
-      const resize = () => {
-        try {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        } catch (error) {
-          console.warn('Canvas resize error:', error);
-        }
-      };
+    const offscreenCanvas = document.createElement('canvas');
+    const offscreenCtx = offscreenCanvas.getContext('2d');
 
-      const handleMouseMove = (e) => {
+    const particles = Array.from({ length: 60 }, () => ({
+      x: Math.random() * (window.innerWidth),
+      y: Math.random() * (window.innerHeight),
+      size: Math.random() * 2 + 1,
+      speedX: Math.random() * 0.4 - 0.2,
+      speedY: Math.random() * 0.4 - 0.2,
+      initialAlpha: Math.random() * 0.2 + 0.05,
+      color: `59, 130, 246`
+    }));
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      offscreenCanvas.width = canvas.width;
+      offscreenCanvas.height = canvas.height;
+      drawStaticParticles();
+    };
+
+    const handleMouseMove = (e) => {
+      if (Date.now() - lastMouseMove > 16) { // Throttle to ~60fps
         mouse.x = e.clientX;
         mouse.y = e.clientY;
-      };
-
-      const handleMouseLeave = () => {
-        mouse.x = null;
-        mouse.y = null;
-      };
-
-      window.addEventListener('resize', resize);
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseleave', handleMouseLeave);
-      resize();
-
-      const particles = [];
-      for (let i = 0; i < 60; i++) {
-        particles.push({
-          x: Math.random() * (canvas.width || window.innerWidth),
-          y: Math.random() * (canvas.height || window.innerHeight),
-          size: Math.random() * 2 + 1,
-          speedX: Math.random() * 0.5 - 0.25,
-          speedY: Math.random() * 0.5 - 0.25,
-          color: { r: 59, g: 130, b: 246 },
-          initialAlpha: Math.random() * 0.3
-        });
+        mouse.isOver = true;
+        lastMouseMove = Date.now();
       }
+    };
 
-      const animate = () => {
-        try {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const handleMouseLeave = () => {
+      mouse.isOver = false;
+    };
 
-          // Connect nearby particles with thin lines
-          for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-              const dx = particles[i].x - particles[j].x;
-              const dy = particles[i].y - particles[j].y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
+    resize();
 
-              if (distance < 150) {
-                ctx.beginPath();
-                ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 * (1 - distance / 150)})`;
-                ctx.lineWidth = 0.5;
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
-              }
-            }
-          }
+    function drawStaticParticles() {
+      if (!offscreenCtx) return;
+      offscreenCtx.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-          particles.forEach(p => {
-            let currentAlpha = p.initialAlpha;
-
-            // Mouse attraction logic
-            if (mouse.x !== null && mouse.y !== null) {
-              const dx = mouse.x - p.x;
-              const dy = mouse.y - p.y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-
-              if (distance < 250) {
-                p.x += dx * 0.015;
-                p.y += dy * 0.015;
-
-                const colorChangeDistance = 150;
-                if (distance < colorChangeDistance) {
-                  const proximityFactor = 1 - (distance / colorChangeDistance);
-                  currentAlpha = p.initialAlpha + (0.8 - p.initialAlpha) * proximityFactor;
-                }
-              }
-            }
-
-            p.x += p.speedX;
-            p.y += p.speedY;
-            if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${p.color?.r || 59}, ${p.color?.g || 130}, ${p.color?.b || 246}, ${currentAlpha})`;
-            ctx.fill();
-          });
-          animationFrameId = window.requestAnimationFrame(animate);
-        } catch (error) {
-          console.warn('Canvas animation error:', error);
-          // Stop animation on error
-          if (animationFrameId) {
-            window.cancelAnimationFrame(animationFrameId);
+          if (distance < 120) {
+            offscreenCtx.beginPath();
+            offscreenCtx.strokeStyle = `rgba(59, 130, 246, ${0.1 * (1 - distance / 120)})`;
+            offscreenCtx.lineWidth = 0.3;
+            offscreenCtx.moveTo(particles[i].x, particles[i].y);
+            offscreenCtx.lineTo(particles[j].x, particles[j].y);
+            offscreenCtx.stroke();
           }
         }
-      };
-      animate();
-
-      return () => {
-        window.removeEventListener('resize', resize);
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseleave', handleMouseLeave);
-        if (animationFrameId) {
-          window.cancelAnimationFrame(animationFrameId);
-        }
-      };
-    } catch (error) {
-      console.warn('Canvas setup error:', error);
+      }
     }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(offscreenCanvas, 0, 0);
+
+      particles.forEach(p => {
+        let currentAlpha = p.initialAlpha;
+
+        if (mouse.isOver && mouse.x !== null) {
+          const dx = mouse.x - p.x;
+          const dy = mouse.y - p.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const attractionRadius = 250;
+          const highlightRadius = 150;
+
+          if (distance < attractionRadius) {
+            p.x += dx * 0.02;
+            p.y += dy * 0.02;
+
+            if (distance < highlightRadius) {
+              const proximity = 1 - (distance / highlightRadius);
+              currentAlpha = p.initialAlpha + (0.7 - p.initialAlpha) * proximity;
+            }
+          }
+        }
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color}, ${currentAlpha})`;
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    drawStaticParticles();
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [canvasRef]);
 
   useEffect(() => {
@@ -350,7 +378,13 @@ const Portfolio = ({ dynamicProjects, isProjectsLoading, API_BASE_URL, githubUrl
                     </div>
                     <p className="text-slate-400 leading-relaxed mb-8">{selectedProject.description}</p>
                     <div className="flex gap-4">
-                      <a href={selectedProject.liveLink || selectedProject.link} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all">Live Demo <ExternalLink className="w-5 h-5" /></a>
+                      <a href={selectedProject.liveLink || selectedProject.liveUrl} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all">Live Demo <ExternalLink className="w-5 h-5" /></a>
+                      {selectedProject.githubUrl && (
+                        <a href={selectedProject.githubUrl} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-slate-700 text-white py-4 rounded-2xl font-bold hover:bg-slate-600 transition-all">Frontend <Globe className="w-5 h-5" /></a>
+                      )}
+                      {selectedProject.backendGithubUrl && (
+                        <a href={selectedProject.backendGithubUrl} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-slate-700 text-white py-4 rounded-2xl font-bold hover:bg-slate-600 transition-all">Backend <Globe className="w-5 h-5" /></a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -482,14 +516,14 @@ function App() {
   const canvasRef = useRef(null);
 
   // Define missing URLs/constants
-  const githubUrl = "https://github.com/yogeshwaranjs"; // 
-  const linkedinUrl = "https://linkedin.com/in/yogeshwaranjs"; // 
+  const githubUrl = "https://github.com/yogeshwaranjs131-ui"; // 
+  const linkedinUrl = "https://www.linkedin.com/in/yogeshwaran-udayakumar-25b94b170"; // 
   const profilePhotoUrl = "/myphoto.png.jpeg"; // 
-  const resumeUrl = "https://drive.google.com/file/d/1X44ky3BVm_laOHm2sswE0PspbYix3bJk/view?usp=drivesdk"; 
+  const resumeUrl = "https://drive.google.com/file/d/1oDQnHcwCz8TJ5B-0ZuFFCB4JDlMdgKRM/view?usp=sharing"; 
   const nsdcCertificateImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/NSDC_Logo.png/640px-NSDC_Logo.png";
 
   //
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://portfolio-31t2.onrender.com';
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://your-backend-name.onrender.com';
 
   const fetchProjects = useCallback(() => {
     setIsProjectsLoading(true);
@@ -524,7 +558,7 @@ function App() {
             dynamicProjects={dynamicProjects}
             isProjectsLoading={isProjectsLoading}
             API_BASE_URL={API_BASE_URL}
-            githubUrl={githubUrl}
+            githubUrl={"https://github.com/yogeshwaranjs131-ui"}
             linkedinUrl={linkedinUrl}
             profilePhotoUrl={profilePhotoUrl}
             resumeUrl={resumeUrl}

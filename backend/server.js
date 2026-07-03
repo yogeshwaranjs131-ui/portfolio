@@ -11,25 +11,61 @@ app.use(express.json());
 // Mock Projects Data (Neengal database illai endral ithai payanpaduthalam)
 const projects = [
   {
+    _id: 'proj1',
+    title: "Hotel Management Software",
+    description: "A comprehensive hotel management system for room booking, guest management, and billing. Features an intuitive dashboard for staff.",
+    tech: ["React", "Node.js", "MongoDB", "JWT"],
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
+    liveLink: "#",
+    featured: true
+  },
+  {
+    _id: 'proj2',
+    title: "Flight Ticket Booking",
+    description: "A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.",
+    tech: ["React", "Amadeus API", "Context API", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80",
+    liveLink: "#",
+    featured: true
+  },
+  {
+    _id: 'proj3',
+    title: "Car Rental Software",
+    description: "A complete car rental solution with vehicle availability tracking, online booking, and payment processing.",
+    tech: ["React", "Redux", "Node.js", "Stripe API"],
+    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80",
+    liveLink: "#",
+    featured: true
+  },
+  {
     title: "Music Streaming App",
     description: "A premium audio platform with high-fidelity streaming, playlist curation, and a modern 'Glassmorphic' UI design using React.",
     tech: ["React", "Web Audio API", "Context API", "Tailwind"],
+    githubUrl: "https://github.com/your-username/music-app-frontend",
+    backendGithubUrl: "https://github.com/your-username/music-app-backend",
     image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80",
-    liveLink: "https://musicappstream.netlify.app/"
+    liveLink: "https://musicappstream.netlify.app/",
+    featured: false
   },
   {
     title: "Recipe App (React P2)",
     description: "A sophisticated food discovery application featuring API integration, advanced search filters, and recipe bookmarking functionality.",
     tech: ["React", "REST API", "Redux", "Axios"],
+    githubUrl: "https://github.com/your-username/recipe-app-frontend",
+    backendGithubUrl: "https://github.com/your-username/recipe-app-backend",
     image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80",
-    liveLink: "https://create-recipeapp.netlify.app/"
+    liveLink: "https://create-recipeapp.netlify.app/",
+    featured: false
   },
   {
     title: "Kanban Board (React P1)",
     description: "A robust task management application with drag-and-drop capabilities, persistent state, and multi-column organization for agile teams.",
     tech: ["React", "DnD Library", "Local Storage", "SCSS"],
+    githubUrl: "https://github.com/your-username/kanban-board-frontend",
+    backendGithubUrl: "https://github.com/your-username/kanban-board-backend",
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80",
-    liveLink: "https://createkanbanapp.netlify.app/"
+    liveLink: "https://createkanbanapp.netlify.app/",
+    featured: false
   }
 ];
 
@@ -76,6 +112,24 @@ app.post('/api/admin/projects', (req, res) => {
   const newProject = req.body;
   projects.push(newProject);
   res.status(201).json(newProject);
+});
+
+app.put('/api/admin/projects/reorder', (req, res) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (!token || !token.startsWith('mock-jwt-token')) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  const { projectIds } = req.body;
+  if (!Array.isArray(projectIds)) {
+    return res.status(400).json({ message: 'projectIds must be an array' });
+  }
+
+  const reorderedProjects = projectIds.map(id => projects.find(p => (p._id || p.id) == id)).filter(Boolean);
+  
+  projects.length = 0;
+  projects.push(...reorderedProjects);
+  res.json({ message: 'Projects reordered successfully' });
 });
 
 app.put('/api/admin/projects/:id', (req, res) => {

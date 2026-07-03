@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Star } from 'lucide-react';
 
 const Projects = ({ displayProjects, isProjectsLoading, setSelectedProject }) => {
   return (
@@ -27,8 +27,24 @@ const Projects = ({ displayProjects, isProjectsLoading, setSelectedProject }) =>
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="group bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-xl hover:shadow-2xl transition-all"
+                className="group bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 shadow-xl hover:shadow-2xl transition-all relative"
               >
+                {project.featured && (
+                  <motion.div
+                    className="absolute top-0 right-0 z-10 bg-yellow-500 text-black text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-bl-2xl rounded-tr-[2.25rem] shadow-lg flex items-center gap-1"
+                    animate={{
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <Star className="w-3 h-3" /> Featured
+                  </motion.div>
+                )}
                 <div className="relative h-60 overflow-hidden bg-slate-800">
                   <img src={project.image || project.imageUrl} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -42,7 +58,9 @@ const Projects = ({ displayProjects, isProjectsLoading, setSelectedProject }) =>
                 </div>
                 <div className="p-8">
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="p-2 bg-slate-800 rounded-lg">{project.icon}</div>
+                    {project.icon && (
+                      <div className="p-2 bg-slate-800 rounded-lg">{project.icon}</div>
+                    )}
                     <div className="flex flex-wrap gap-2">
                       {project.tech?.map((t, i) => (
                         <span key={i} className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">/ {t}</span>
