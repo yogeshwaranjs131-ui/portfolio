@@ -68,7 +68,7 @@ const Portfolio = ({ dynamicProjects, isProjectsLoading, API_BASE_URL, githubUrl
       title: "Recipe App (React P2)",
       description: "A sophisticated food discovery application featuring API integration, advanced search filters, and recipe bookmarking functionality.",
       tech: ["React", "REST API", "Redux", "Axios"],
-      image: "https://images.unsplash.com/photo-1466637574441/749b8f19452f?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
       icon: <Utensils className="w-5 h-5 text-blue-600" />,
       liveLink: "https://create-recipeapp.netlify.app/"
     },
@@ -482,13 +482,13 @@ function App() {
   const canvasRef = useRef(null);
 
   // Define missing URLs/constants
-  const githubUrl = "https://github.com/yogeshwaranjs"; // உங்கள் GitHub லிங்க்
-  const linkedinUrl = "https://linkedin.com/in/yogeshwaranjs"; // உங்கள் LinkedIn லிங்க்
-  const profilePhotoUrl = "/myphoto.png.jpeg"; // Add your actual path
-  const resumeUrl = "#"; 
+  const githubUrl = "https://github.com/yogeshwaranjs"; // 
+  const linkedinUrl = "https://linkedin.com/in/yogeshwaranjs"; // 
+  const profilePhotoUrl = "/myphoto.png.jpeg"; // 
+  const resumeUrl = "https://drive.google.com/file/d/1X44ky3BVm_laOHm2sswE0PspbYix3bJk/view?usp=drivesdk"; 
   const nsdcCertificateImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/NSDC_Logo.png/640px-NSDC_Logo.png";
 
-  // Netlify-ல் VITE_API_URL என்ற Environment Variable-ஐப் பயன்படுத்த இது உதவும்
+  //
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://portfolio-31t2.onrender.com';
 
   const fetchProjects = useCallback(() => {
@@ -513,7 +513,7 @@ function App() {
     fetchProjects();
   }, [fetchProjects]);
 
-  // URL-ல் /my-portfolio இருந்தால் அதை basename-ஆக எடுத்துக்கொள், இல்லையெனில் காலியாக விடு
+  // 
   const basename = window.location.pathname.includes('/my-portfolio') ? '/my-portfolio' : '';
 
   return (
@@ -544,7 +544,7 @@ function App() {
             />
           </ProtectedRoute>
         } />
-        {/* தவறான URL வந்தால் ஹோம் பேஜிற்கு திருப்பி விட இந்த லைன் உதவும் */}
+        {/* */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
