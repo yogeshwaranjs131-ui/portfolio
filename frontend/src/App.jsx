@@ -558,10 +558,10 @@ function App() {
             dynamicProjects={dynamicProjects}
             isProjectsLoading={isProjectsLoading}
             API_BASE_URL={API_BASE_URL}
-            githubUrl={"https://github.com/yogeshwaranjs131-ui"}
+            githubUrl={githubUrl}
             linkedinUrl={linkedinUrl}
-            profilePhotoUrl={profilePhotoUrl}
-            resumeUrl={resumeUrl}
+            profilePhotoUrl={"/Profile.png"}
+            resumeUrl={"https://drive.google.com/uc?export=download&id=1CRoXhH5q1sKj1FLCp1T5vKvmR_FW31Nh"}
             nsdcCertificateImageUrl={nsdcCertificateImageUrl}
             selectedProject={selectedProject}
             setSelectedProject={setSelectedProject}
