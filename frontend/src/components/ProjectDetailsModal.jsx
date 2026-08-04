@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, ExternalLink, Globe } from 'lucide-react';
 
 const ProjectDetailsModal = ({ selectedProject, setSelectedProject }) => {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [selectedProject?.title]);
+
+  const imageGallery = selectedProject?.images?.length
+    ? selectedProject.images
+    : selectedProject?.image
+      ? [selectedProject.image]
+      : [];
+
   return (
     <AnimatePresence>
       {selectedProject && (
@@ -29,7 +41,25 @@ const ProjectDetailsModal = ({ selectedProject, setSelectedProject }) => {
 
             <div className="grid md:grid-cols-2">
               <div className="h-64 md:h-full bg-slate-800 overflow-hidden">
-                <img src={selectedProject.image || selectedProject.imageUrl} alt={selectedProject.title} className="w-full h-full object-cover" />
+                {imageGallery.length > 0 ? (
+                  <div className="h-full flex flex-col">
+                    <img src={imageGallery[activeImageIndex]} alt={selectedProject.title} className="w-full h-full object-cover" />
+                    {imageGallery.length > 1 && (
+                      <div className="flex gap-2 p-3 bg-slate-900/80">
+                        {imageGallery.map((image, index) => (
+                          <button
+                            key={`${selectedProject.title}-${index}`}
+                            type="button"
+                            onClick={() => setActiveImageIndex(index)}
+                            className={`h-2.5 flex-1 rounded-full transition-all ${index === activeImageIndex ? 'bg-blue-500' : 'bg-slate-700'}`}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex h-full items-center justify-center text-slate-400">No preview available</div>
+                )}
               </div>
               <div className="p-8 md:p-12 overflow-y-auto max-h-[70vh]">
                 <h3 className="text-3xl font-black mb-4 text-white uppercase">{selectedProject.title}</h3>

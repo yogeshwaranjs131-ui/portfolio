@@ -6,7 +6,7 @@ export const FALLBACK_PROJECTS = [
     description:
       'A comprehensive hotel management system for room booking, guest management, and billing. Features an intuitive dashboard for staff.',
     tech: ['React', 'Node.js', 'MongoDB', 'JWT'],
-    image: 'https://images.unsplash.com/photo-1563911302283-d256c5824135?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80',
     icon: <Briefcase className="w-5 h-5 text-blue-600" />,
     liveLink: '#',
     githubUrl: 'https://github.com/yogeshwaranjs131-ui',
@@ -16,7 +16,12 @@ export const FALLBACK_PROJECTS = [
     title: 'Flight Ticket Booking',
     description: 'A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.',
     tech: ['React', 'Amadeus API', 'Context API', 'Tailwind CSS'],
-    image: 'https://images.unsplash.com/photo-1609951659574-103b73554b01?w=800&q=80',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
+    images: [
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
+    ],
     icon: <Plane className="w-5 h-5 text-blue-600" />,
     liveLink: 'https://flightappc.netlify.app/',
     liveLabel: 'my-flight',

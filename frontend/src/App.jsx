@@ -22,7 +22,7 @@ function App() {
   const linkedinUrl = 'https://www.linkedin.com/in/yogeshwaran-udayakumar-25b94b170';
   const profilePhotoUrl = '/my-photo.jpg';
   const resumeUrl = 'https://drive.google.com/file/d/10jGucW_MjLY-O86mOingT9HIkf72rktE/view?usp=drivesdk';
-  const nsdcCertificateImageUrl = 'https://drive.google.com/uc?export=download&id=14NdEuZQP1SULtDxUtrl0eCaPEFGMFnvw';
+  const nsdcCertificateImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10';
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://your-backend-name.onrender.com';
 
   const fetchProjects = useCallback(() => {

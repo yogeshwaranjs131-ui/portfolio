@@ -8,7 +8,7 @@ export const SOCIAL_URLS = {
 export const PORTFOLIO_URLS = {
   profilePhoto: '/my-photo.jpg',
   resume: 'https://drive.google.com/file/d/10jGucW_MjLY-O86mOingT9HIkf72rktE/view?usp=drivesdk',
-  nsdcCertificate: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/NSDC_Logo.png/640px-NSDC_Logo.png',
+  nsdcCertificate: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10',
 };
 
 export const CERTIFICATIONS = {
@@ -20,8 +20,8 @@ export const CERTIFICATIONS = {
   },
   nsdc: {
     name: 'NSDC Certified',
-    logo: 'https://drive.google.com/uc?export=download&id=14NdEuZQP1SULtDxUtrl0eCaPEFGMFnvw',
-    link: 'https://drive.google.com/uc?export=download&id=14NdEuZQP1SULtDxUtrl0eCaPEFGMFnvw',
-    preview: 'https://drive.google.com/uc?export=view&id=14NdEuZQP1SULtDxUtrl0eCaPEFGMFnvw',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10',
+    link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10',
+    preview: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10',
   },
 };
