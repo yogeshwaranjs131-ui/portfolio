@@ -84,6 +84,7 @@ const PortfolioPage = ({
       image: 'https://images.unsplash.com/photo-1609951659574-103b73554b01?w=800&q=80',
       icon: <Plane className="w-5 h-5 text-blue-600" />,
       liveLink: '#',
+      githubUrl: 'https://github.com/yogeshwaranjs131-ui/flight-booking-app.git',
       featured: true,
     },
     {
@@ -102,6 +103,7 @@ const PortfolioPage = ({
       image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
       icon: <Music className="w-5 h-5 text-blue-600" />,
       liveLink: 'https://musicappstream.netlify.app/',
+      githubUrl: 'https://github.com/yogeshwaranjs131-ui/music-app.git',
     },
     {
       title: 'Recipe App (React P2)',
