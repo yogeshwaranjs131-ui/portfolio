@@ -9,6 +9,7 @@ export const FALLBACK_PROJECTS = [
     image: 'https://images.unsplash.com/photo-1563911302283-d256c5824135?w=800&q=80',
     icon: <Briefcase className="w-5 h-5 text-blue-600" />,
     liveLink: '#',
+    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
     featured: true,
   },
   {
@@ -30,6 +31,7 @@ export const FALLBACK_PROJECTS = [
     image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80',
     icon: <Car className="w-5 h-5 text-blue-600" />,
     liveLink: '#',
+    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
     featured: true,
   },
   {
@@ -52,6 +54,7 @@ export const FALLBACK_PROJECTS = [
     image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80',
     icon: <Utensils className="w-5 h-5 text-blue-600" />,
     liveLink: 'https://create-recipeapp.netlify.app/',
+    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
   },
   {
     title: 'Kanban Board (React P1)',
@@ -61,6 +64,7 @@ export const FALLBACK_PROJECTS = [
     image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80',
     icon: <Columns className="w-5 h-5 text-blue-600" />,
     liveLink: 'https://createkanbanapp.netlify.app/',
+    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
   },
 ];
 

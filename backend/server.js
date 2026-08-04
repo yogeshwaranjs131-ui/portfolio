@@ -17,6 +17,7 @@ const projects = [
     tech: ["React", "Node.js", "MongoDB", "JWT"],
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
     liveLink: "#",
+    githubUrl: "https://github.com/yogeshwaranjs131-ui",
     featured: true
   },
   {
@@ -27,6 +28,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80",
     liveLink: "https://flightappc.netlify.app/",
     liveLabel: "my-flight",
+    githubUrl: "https://github.com/yogeshwaranjs131-ui/flight-booking-app.git",
     backendLink: "https://flight-booking-app-6z55.onrender.com/",
     featured: true
   },
@@ -37,6 +39,7 @@ const projects = [
     tech: ["React", "Redux", "Node.js", "Stripe API"],
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80",
     liveLink: "#",
+    githubUrl: "https://github.com/yogeshwaranjs131-ui",
     featured: true
   },
   {
@@ -56,8 +59,8 @@ const projects = [
     title: "Recipe App (React P2)",
     description: "A sophisticated food discovery application featuring API integration, advanced search filters, and recipe bookmarking functionality.",
     tech: ["React", "REST API", "Redux", "Axios"],
-    githubUrl: "https://github.com/your-username/recipe-app-frontend",
-    backendGithubUrl: "https://github.com/your-username/recipe-app-backend",
+    githubUrl: "https://github.com/yogeshwaranjs131-ui",
+    backendGithubUrl: "https://github.com/yogeshwaranjs131-ui",
     image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80",
     liveLink: "https://create-recipeapp.netlify.app/",
     featured: false
@@ -66,8 +69,8 @@ const projects = [
     title: "Kanban Board (React P1)",
     description: "A robust task management application with drag-and-drop capabilities, persistent state, and multi-column organization for agile teams.",
     tech: ["React", "DnD Library", "Local Storage", "SCSS"],
-    githubUrl: "https://github.com/your-username/kanban-board-frontend",
-    backendGithubUrl: "https://github.com/your-username/kanban-board-backend",
+    githubUrl: "https://github.com/yogeshwaranjs131-ui",
+    backendGithubUrl: "https://github.com/yogeshwaranjs131-ui",
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80",
     liveLink: "https://createkanbanapp.netlify.app/",
     featured: false
