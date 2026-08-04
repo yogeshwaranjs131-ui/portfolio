@@ -39,13 +39,16 @@ const ProjectDetailsModal = ({ selectedProject, setSelectedProject }) => {
                   ))}
                 </div>
                 <p className="text-slate-400 leading-relaxed mb-8">{selectedProject.description}</p>
-                <div className="flex gap-4">
-                  <a href={selectedProject.liveLink || selectedProject.liveUrl} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all">Live Demo <ExternalLink className="w-5 h-5" /></a>
+                <div className="flex gap-4 flex-wrap">
+                  <a href={selectedProject.liveLink || selectedProject.liveUrl} target="_blank" rel="noreferrer" className="flex-1 min-w-48 flex items-center justify-center gap-2 bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all">{selectedProject.liveLabel || 'Frontend App'} <ExternalLink className="w-5 h-5" /></a>
+                  {selectedProject.backendLink && (
+                    <a href={selectedProject.backendLink} target="_blank" rel="noreferrer" className="flex-1 min-w-48 flex items-center justify-center gap-2 bg-slate-700 text-white py-4 rounded-2xl font-bold hover:bg-slate-600 transition-all">{selectedProject.backendLabel || 'Backend App'} <Globe className="w-5 h-5" /></a>
+                  )}
                   {selectedProject.githubUrl && (
-                    <a href={selectedProject.githubUrl} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-slate-700 text-white py-4 rounded-2xl font-bold hover:bg-slate-600 transition-all">Frontend <Globe className="w-5 h-5" /></a>
+                    <a href={selectedProject.githubUrl} target="_blank" rel="noreferrer" className="flex-1 min-w-48 flex items-center justify-center gap-2 bg-slate-700 text-white py-4 rounded-2xl font-bold hover:bg-slate-600 transition-all">Frontend Repo <Globe className="w-5 h-5" /></a>
                   )}
                   {selectedProject.backendGithubUrl && (
-                    <a href={selectedProject.backendGithubUrl} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-slate-700 text-white py-4 rounded-2xl font-bold hover:bg-slate-600 transition-all">Backend <Globe className="w-5 h-5" /></a>
+                    <a href={selectedProject.backendGithubUrl} target="_blank" rel="noreferrer" className="flex-1 min-w-48 flex items-center justify-center gap-2 bg-slate-700 text-white py-4 rounded-2xl font-bold hover:bg-slate-600 transition-all">Backend Repo <Globe className="w-5 h-5" /></a>
                   )}
                 </div>
               </div>

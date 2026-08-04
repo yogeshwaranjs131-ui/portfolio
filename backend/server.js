@@ -25,7 +25,9 @@ const projects = [
     description: "A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.",
     tech: ["React", "Amadeus API", "Context API", "Tailwind CSS"],
     image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80",
-    liveLink: "#",
+    liveLink: "https://flightappc.netlify.app/",
+    liveLabel: "my-flight",
+    backendLink: "https://flight-booking-app-6z55.onrender.com/",
     featured: true
   },
   {
@@ -45,6 +47,9 @@ const projects = [
     backendGithubUrl: "https://github.com/your-username/music-app-backend",
     image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80",
     liveLink: "https://musicappstream.netlify.app/",
+    liveLabel: "Music Streaming App",
+    backendLink: "https://music-app-2wy9.onrender.com/",
+    backendLabel: "Music API",
     featured: false
   },
   {

@@ -83,7 +83,9 @@ const PortfolioPage = ({
       tech: ['React', 'Amadeus API', 'Context API', 'Tailwind CSS'],
       image: 'https://images.unsplash.com/photo-1609951659574-103b73554b01?w=800&q=80',
       icon: <Plane className="w-5 h-5 text-blue-600" />,
-      liveLink: '#',
+      liveLink: 'https://flightappc.netlify.app/',
+      liveLabel: 'my-flight',
+      backendLink: 'https://flight-booking-app-6z55.onrender.com/',
       featured: true,
     },
     {
@@ -102,6 +104,9 @@ const PortfolioPage = ({
       image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
       icon: <Music className="w-5 h-5 text-blue-600" />,
       liveLink: 'https://musicappstream.netlify.app/',
+      liveLabel: 'Music Streaming App',
+      backendLink: 'https://music-app-2wy9.onrender.com/',
+      backendLabel: 'Music API',
     },
     {
       title: 'Recipe App (React P2)',
