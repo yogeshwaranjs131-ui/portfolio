@@ -7,7 +7,7 @@ export const SOCIAL_URLS = {
 
 export const PORTFOLIO_URLS = {
   profilePhoto: '/my-photo.jpg',
-  resume: 'https://drive.google.com/file/d/10jGucW_MjLY-O86mOingT9HIkf72rktE/view?usp=drivesdk',
+  resume: 'https://drive.google.com/file/d/1v4XasrgcCUTQ7CSRkz7Nk8GNmiNeFndu/view?usp=sharing',
   nsdcCertificate: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10',
 };
 
