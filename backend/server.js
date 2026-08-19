@@ -11,16 +11,6 @@ app.use(express.json());
 // Mock Projects Data (Neengal database illai endral ithai payanpaduthalam)
 const projects = [
   {
-    _id: 'proj1',
-    title: "Hotel Management Software",
-    description: "A comprehensive hotel management system for room booking, guest management, and billing. Features an intuitive dashboard for staff.",
-    tech: ["React", "Node.js", "MongoDB", "JWT"],
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
-    liveLink: "#",
-    githubUrl: "https://github.com/yogeshwaranjs131-ui",
-    featured: true
-  },
-  {
     _id: 'proj2',
     title: "Flight Ticket Booking",
     description: "A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.",
@@ -35,12 +25,13 @@ const projects = [
   {
     _id: 'proj3',
     title: "Car Rental Software",
-    description: "A complete car rental solution with vehicle availability tracking, online booking, and payment processing.",
+    description: "A real-world, complete car rental solution featuring vehicle availability tracking, online booking, secure payment processing, and automated email notifications.",
     tech: ["React", "Redux", "Node.js", "Stripe API"],
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80",
-    liveLink: "#",
-    githubUrl: "https://github.com/yogeshwaranjs131-ui",
-    featured: true
+    liveLink: "https://car-rental-software.vercel.app/",
+    githubUrl: "https://github.com/yogeshwaranjs131-ui/Car-Rental-Software.git",
+    featured: true,
+    backendLink: "https://car-rental-software.onrender.com/"
   },
   {
     title: "Music Streaming App",
@@ -53,26 +44,6 @@ const projects = [
     liveLabel: "Music Streaming App",
     backendLink: "https://music-app-2wy9.onrender.com/",
     backendLabel: "Music API",
-    featured: false
-  },
-  {
-    title: "Recipe App (React P2)",
-    description: "A sophisticated food discovery application featuring API integration, advanced search filters, and recipe bookmarking functionality.",
-    tech: ["React", "REST API", "Redux", "Axios"],
-    githubUrl: "https://github.com/yogeshwaranjs131-ui",
-    backendGithubUrl: "https://github.com/yogeshwaranjs131-ui",
-    image: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80",
-    liveLink: "https://create-recipeapp.netlify.app/",
-    featured: false
-  },
-  {
-    title: "Kanban Board (React P1)",
-    description: "A robust task management application with drag-and-drop capabilities, persistent state, and multi-column organization for agile teams.",
-    tech: ["React", "DnD Library", "Local Storage", "SCSS"],
-    githubUrl: "https://github.com/yogeshwaranjs131-ui",
-    backendGithubUrl: "https://github.com/yogeshwaranjs131-ui",
-    image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80",
-    liveLink: "https://createkanbanapp.netlify.app/",
     featured: false
   }
 ];

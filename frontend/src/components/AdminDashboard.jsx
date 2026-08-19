@@ -11,8 +11,8 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
     description: '',
     technologies: '',
     githubUrl: '',
-    backendGithubUrl: '',
-    liveUrl: '',
+    backendGithubUrl: '', // Renamed from liveUrl
+    liveLink: '',
     imageUrl: '',
     featured: false
   });
@@ -93,7 +93,7 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       technologies: project.technologies?.join(', ') || '',
       githubUrl: project.githubUrl || '',
       backendGithubUrl: project.backendGithubUrl || '',
-      liveUrl: project.liveUrl || '',
+      liveLink: project.liveLink || '',
       imageUrl: project.imageUrl || '',
       featured: project.featured || false,
       icon: project.icon || null
@@ -130,7 +130,7 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       technologies: [],
       githubUrl: '',
       backendGithubUrl: '',
-      liveUrl: '',
+      liveLink: '',
       imageUrl: '',
       featured: false,
       icon: null
@@ -142,7 +142,7 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       technologies: '',
       githubUrl: '',
       backendGithubUrl: '',
-      liveUrl: '',
+      liveLink: '',
       imageUrl: '',
       featured: false,
       icon: null
@@ -158,8 +158,8 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
       description: '',
       technologies: '',
       githubUrl: '',
-      backendGithubUrl: '',
-      liveUrl: '',
+    backendGithubUrl: '', // Renamed from liveUrl
+    liveLink: '',
       imageUrl: '',
       featured: false,
       icon: null
@@ -280,8 +280,8 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
                 <input
                   type="url"
                   placeholder="Live URL"
-                  value={formData.liveUrl}
-                  onChange={(e) => setFormData({ ...formData, liveUrl: e.target.value })}
+                  value={formData.liveLink}
+                  onChange={(e) => setFormData({ ...formData, liveLink: e.target.value })}
                   className="bg-slate-600 border border-slate-500 rounded-xl p-4 text-white focus:outline-none focus:border-blue-600"
                 />
                 <input
@@ -351,8 +351,8 @@ const AdminDashboard = ({ API_BASE_URL, projects, fetchProjects }) => {
                                     Backend GitHub
                                   </a>
                                 )}
-                                {project.liveUrl && (
-                                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+                                {project.liveLink && (
+                                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
                                     Live Demo
                                   </a>
                                 )}

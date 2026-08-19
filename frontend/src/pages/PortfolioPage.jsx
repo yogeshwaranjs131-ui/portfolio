@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Briefcase, Plane, Car, Music, Utensils, Columns } from 'lucide-react';
+import { Briefcase } from 'lucide-react';
 
 import Navbar from '../components/Navbar.jsx';
 import Hero from '../components/Hero.jsx';
@@ -11,6 +11,7 @@ import Footer from '../components/Footer.jsx';
 import CertificationSection from '../components/CertificationSection.jsx';
 import ScrollToTopButton from '../components/ScrollToTopButton.jsx';
 import ProjectDetailsModal from '../components/ProjectDetailsModal.jsx';
+import { FALLBACK_PROJECTS } from '../utils/projectsData.js';
 
 const TITLES = ['Admin Assistant', 'Full Stack Developer', 'IT Infrastructure Engineer'];
 
@@ -67,72 +68,7 @@ const PortfolioPage = ({
     }
   };
 
-  const fallbackProjects = [
-    {
-      title: 'Hotel Management Software',
-      description: 'A comprehensive hotel management system for room booking, guest management, and billing. Features an intuitive dashboard for staff.',
-      tech: ['React', 'Node.js', 'MongoDB', 'JWT'],
-      image: 'https://images.unsplash.com/photo-1563911302283-d256c5824135?w=800&q=80',
-      icon: <Briefcase className="w-5 h-5 text-blue-600" />,
-      liveLink: '#',
-      githubUrl: 'https://github.com/yogeshwaranjs131-ui',
-      featured: true,
-    },
-    {
-      title: 'Flight Ticket Booking',
-      description: 'A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.',
-      tech: ['React', 'Amadeus API', 'Context API', 'Tailwind CSS'],
-      image: 'https://images.unsplash.com/photo-1609951659574-103b73554b01?w=800&q=80',
-      icon: <Plane className="w-5 h-5 text-blue-600" />,
-      liveLink: 'https://flightappc.netlify.app/',
-      liveLabel: 'my-flight',
-      githubUrl: 'https://github.com/yogeshwaranjs131-ui/flight-booking-app.git',
-      backendLink: 'https://flight-booking-app-6z55.onrender.com/',
-      featured: true,
-    },
-    {
-      title: 'Car Rental Software',
-      description: 'A complete car rental solution with vehicle availability tracking, online booking, and payment processing.',
-      tech: ['React', 'Redux', 'Node.js', 'Stripe API'],
-      image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80',
-      icon: <Car className="w-5 h-5 text-blue-600" />,
-      liveLink: '#',
-      githubUrl: 'https://github.com/yogeshwaranjs131-ui',
-      featured: true,
-    },
-    {
-      title: 'Music Streaming App',
-      description: "A premium audio platform with high-fidelity streaming, playlist curation, and a modern 'Glassmorphic' UI design using React.",
-      tech: ['React', 'Web Audio API', 'Context API', 'Tailwind'],
-      image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
-      icon: <Music className="w-5 h-5 text-blue-600" />,
-      liveLink: 'https://musicappstream.netlify.app/',
-      liveLabel: 'Music Streaming App',
-      githubUrl: 'https://github.com/yogeshwaranjs131-ui/music-app.git',
-      backendLink: 'https://music-app-2wy9.onrender.com/',
-      backendLabel: 'Music API',
-    },
-    {
-      title: 'Recipe App (React P2)',
-      description: 'A sophisticated food discovery application featuring API integration, advanced search filters, and recipe bookmarking functionality.',
-      tech: ['React', 'REST API', 'Redux', 'Axios'],
-      image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80',
-      icon: <Utensils className="w-5 h-5 text-blue-600" />,
-      liveLink: 'https://create-recipeapp.netlify.app/',
-      githubUrl: 'https://github.com/yogeshwaranjs131-ui',
-    },
-    {
-      title: 'Kanban Board (React P1)',
-      description: 'A robust task management application with drag-and-drop capabilities, persistent state, and multi-column organization for agile teams.',
-      tech: ['React', 'DnD Library', 'Local Storage', 'SCSS'],
-      image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80',
-      icon: <Columns className="w-5 h-5 text-blue-600" />,
-      liveLink: 'https://createkanbanapp.netlify.app/',
-      githubUrl: 'https://github.com/yogeshwaranjs131-ui',
-    },
-  ];
-
-  const displayProjects = Array.isArray(dynamicProjects) && dynamicProjects.length > 0 ? dynamicProjects : fallbackProjects;
+  const displayProjects = Array.isArray(dynamicProjects) && dynamicProjects.length > 0 ? dynamicProjects : FALLBACK_PROJECTS;
 
   useEffect(() => {
     const canvas = canvasRef.current;

@@ -1,17 +1,7 @@
 import { Briefcase, Plane, Car, Music, Utensils, Columns } from 'lucide-react';
 
 export const FALLBACK_PROJECTS = [
-  {
-    title: 'Hotel Management Software',
-    description:
-      'A comprehensive hotel management system for room booking, guest management, and billing. Features an intuitive dashboard for staff.',
-    tech: ['React', 'Node.js', 'MongoDB', 'JWT'],
-    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80',
-    icon: <Briefcase className="w-5 h-5 text-blue-600" />,
-    liveLink: '#',
-    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
-    featured: true,
-  },
+ 
   {
     title: 'Flight Ticket Booking',
     description: 'A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.',
@@ -31,13 +21,14 @@ export const FALLBACK_PROJECTS = [
   },
   {
     title: 'Car Rental Software',
-    description: 'A complete car rental solution with vehicle availability tracking, online booking, and payment processing.',
+    description: 'A real-world, complete car rental solution featuring vehicle availability tracking, online booking, secure payment processing, and automated email notifications.',
     tech: ['React', 'Redux', 'Node.js', 'Stripe API'],
     image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80',
+    liveLink: 'https://car-rental-software.vercel.app/',
     icon: <Car className="w-5 h-5 text-blue-600" />,
-    liveLink: '#',
-    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
+    githubUrl: 'https://github.com/yogeshwaranjs131-ui/Car-Rental-Software.git',
     featured: true,
+    backendLink: 'https://car-rental-software.onrender.com/',
   },
   {
     title: 'Music Streaming App',
@@ -49,27 +40,6 @@ export const FALLBACK_PROJECTS = [
     liveLabel: 'Music Streaming App',
     githubUrl: 'https://github.com/yogeshwaranjs131-ui/music-app.git',
     backendLink: 'https://music-app-2wy9.onrender.com/',
-    backendLabel: 'Music API',
-  },
-  {
-    title: 'Recipe App (React P2)',
-    description:
-      'A sophisticated food discovery application featuring API integration, advanced search filters, and recipe bookmarking functionality.',
-    tech: ['React', 'REST API', 'Redux', 'Axios'],
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80',
-    icon: <Utensils className="w-5 h-5 text-blue-600" />,
-    liveLink: 'https://create-recipeapp.netlify.app/',
-    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
-  },
-  {
-    title: 'Kanban Board (React P1)',
-    description:
-      'A robust task management application with drag-and-drop capabilities, persistent state, and multi-column organization for agile teams.',
-    tech: ['React', 'DnD Library', 'Local Storage', 'SCSS'],
-    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&q=80',
-    icon: <Columns className="w-5 h-5 text-blue-600" />,
-    liveLink: 'https://createkanbanapp.netlify.app/',
-    githubUrl: 'https://github.com/yogeshwaranjs131-ui',
   },
 ];
 

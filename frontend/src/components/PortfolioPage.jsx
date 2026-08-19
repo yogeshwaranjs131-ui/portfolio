@@ -68,16 +68,7 @@ const PortfolioPage = ({
   };
 
   const fallbackProjects = [
-    {
-      title: 'Hotel Management Software',
-      description: 'A comprehensive hotel management system for room booking, guest management, and billing. Features an intuitive dashboard for staff.',
-      tech: ['React', 'Node.js', 'MongoDB', 'JWT'],
-      image: 'https://images.unsplash.com/photo-1563911302283-d256c5824135?w=800&q=80',
-      icon: <Briefcase className="w-5 h-5 text-blue-600" />,
-      liveLink: '#',
-      githubUrl: 'https://github.com/yogeshwaranjs131-ui',
-      featured: true,
-    },
+    
     {
       title: 'Flight Ticket Booking',
       description: 'A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.',
@@ -96,6 +87,7 @@ const PortfolioPage = ({
       icon: <Car className="w-5 h-5 text-blue-600" />,
       liveLink: '#',
       githubUrl: 'https://github.com/yogeshwaranjs131-ui',
+      backendLink: 'https://car-rental-software.onrender.com/',
       featured: true,
     },
     {
