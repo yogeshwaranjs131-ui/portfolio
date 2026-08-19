@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase } from 'lucide-react';
 
-import Navbar from '../components/Navbar.jsx';
-import Hero from '../components/Hero.jsx';
-import Experience from '../components/Experience.jsx';
-import Projects from '../components/Projects.jsx';
-import Skills from '../components/Skills.jsx';
-import Education from '../components/Education.jsx';
-import Footer from '../components/Footer.jsx';
-import CertificationSection from '../components/CertificationSection.jsx';
-import ScrollToTopButton from '../components/ScrollToTopButton.jsx';
-import ProjectDetailsModal from '../components/ProjectDetailsModal.jsx';
-import { FALLBACK_PROJECTS } from '../utils/projectsData.js';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import Experience from '../components/Experience';
+import Projects from '../components/Projects';
+import Skills from '../components/Skills';
+import Education from '../components/Education';
+import Footer from '../components/Footer';
+import CertificationSection from '../components/CertificationSection';
+import ScrollToTopButton from '../components/ScrollToTopButton';
+import ProjectDetailsModal from '../components/ProjectDetailsModal';
+import { FALLBACK_PROJECTS, EXPERIENCES } from '../utils/projectsData.jsx';
 
 const TITLES = ['Admin Assistant', 'Full Stack Developer', 'IT Infrastructure Engineer'];
 
@@ -231,37 +231,6 @@ const PortfolioPage = ({
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, loopNum, typingSpeed]);
 
-  const experiences = [
-    {
-      role: 'Admin Assistant',
-      company: 'Winterfeel Hotel And Resort Pvt. Ltd.',
-      period: 'February 4, 2026 – Present',
-      logo: 'https://graph.facebook.com/winterfeelhotelsandresorts/picture?type=large',
-      description: 'Directing front-desk operations, guest relations, and resort administration. Managing financial reporting, payroll, and staff onboarding while optimizing room pricing strategies.',
-    },
-    {
-      role: 'IT Engineer',
-      company: 'Care Infotech Pvt. Ltd.',
-      logo: 'https://media.licdn.com/dms/image/v2/C4E0BAQFC07r755Ia7w/company-logo_200_200/company-logo_200_200/0/1644488611278?e=2147483647&v=beta&t=EBEUDI7AjnAvA600qdaUv-l4-BCHZGUAMqJ5AxkPdtY',
-      period: 'April 2025 - August 2025',
-      description: 'Orchestrated enterprise IT infrastructure and SD-WAN configurations. Spearheaded network security protocols and resolved complex system bottlenecks for global-scale operations.',
-    },
-    {
-      role: 'Desktop Support Engineer',
-      company: 'IT Techies Services Pvt. Ltd.',
-      logo: 'https://media.licdn.com/dms/image/v2/D560BAQH-UN7ngi-q3w/company-logo_200_200/company-logo_200_200/0/1684309453088/ittechies_logo?e=2147483647&v=beta&t=CaSHyDR8VmXMXPA3B1YexyJCTY447eOZOkmbvi8nRhU',
-      period: '2023 - 2024',
-      description: 'Delivered high-level technical support and hardware lifecycle management. Optimized network performance and enforced rigorous system security and user access controls.',
-    },
-    {
-      role: 'Service Engineer',
-      company: 'Craze Computers',
-      logo: '/craze-computer-logo.png', // Ensure this file exists in the public folder
-      period: '2014 - 2020',
-      description: 'NOC operations, L1 support, and peak hour traffic monitoring. Specialized in troubleshooting call failures and ticketing system management.',
-    },
-  ];
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -290,7 +259,7 @@ const PortfolioPage = ({
         profilePhotoUrl={profilePhotoUrl}
       />
 
-      <Experience experiences={experiences} />
+      <Experience experiences={EXPERIENCES} />
 
       <CertificationSection nsdcCertificateImageUrl={nsdcCertificateImageUrl} />
 
