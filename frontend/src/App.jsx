@@ -22,10 +22,8 @@ function App() {
   const githubUrl = 'https://github.com/yogeshwaranjs131-ui';
   const linkedinUrl = 'https://www.linkedin.com/in/yogeshwaran-udayakumar-25b94b170';
   const profilePhotoUrl = '/my-photo.jpg';
-  const resumeUrl = 'https://drive.google.com/file/d/1v4XasrgcCUTQ7CSRkz7Nk8GNmiNeFndu/view';
+  const resumeUrl = 'https://drive.google.com/file/d/1VDmoeLuQe1Skdop6Uzo4mrpXYTQVEz75/view?usp=sharing';
   const nsdcCertificateImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10';
-  
-  // Local-ல் ஒர்க் ஆக http://localhost:5000 பயன்படுத்தப்பட்டுள்ளது
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   const fetchProjects = useCallback(() => {
