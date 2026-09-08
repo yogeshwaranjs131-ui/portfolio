@@ -8,14 +8,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Mock Projects Data (Neengal database illai endral ithai payanpaduthalam)
+// Mock Projects Data
 const projects = [
   {
     _id: 'proj2',
     title: "Flight Ticket Booking",
     description: "A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.",
     tech: ["React", "Amadeus API", "Context API", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80",
+    image: "https://png.pngtree.com/thumb_back/fh260/background/20230704/pngtree-d-render-and-illustration-of-an-airplane-departing-from-the-runway-image_3740857.jpg",
     liveLink: "https://flightappc.netlify.app/",
     liveLabel: "my-flight",
     githubUrl: "https://github.com/yogeshwaranjs131-ui/flight-booking-app.git",
@@ -25,8 +25,8 @@ const projects = [
   {
     _id: 'proj3',
     title: "Car Rental Software",
-    description: "A real-world, complete car rental solution featuring vehicle availability tracking, online booking, secure payment processing, and automated email notifications.",
-    tech: ["React", "Redux", "Node.js", "Stripe API"],
+    description: "A complete car rental solution featuring real-time vehicle availability tracking, online booking, 18% GST calculation, secure Razorpay payment gateway, instant PDF invoice download, and automated email notifications.",
+    tech: ["React", "Redux", "Node.js", "Razorpay", "PDFKit"],
     image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80",
     liveLink: "https://car-rental-software.vercel.app/",
     githubUrl: "https://github.com/yogeshwaranjs131-ui/Car-Rental-Software.git",
@@ -34,17 +34,40 @@ const projects = [
     backendLink: "https://car-rental-software.onrender.com/"
   },
   {
+    _id: 'proj4',
     title: "Music Streaming App",
     description: "A premium audio platform with high-fidelity streaming, playlist curation, and a modern 'Glassmorphic' UI design using React.",
     tech: ["React", "Web Audio API", "Context API", "Tailwind"],
-    githubUrl: "https://github.com/your-username/music-app-frontend",
-    backendGithubUrl: "https://github.com/your-username/music-app-backend",
+    githubUrl: "https://github.com/yogeshwaranjs131-ui/music-app.git",
     image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80",
     liveLink: "https://musicappstream.netlify.app/",
     liveLabel: "Music Streaming App",
     backendLink: "https://music-app-2wy9.onrender.com/",
-    backendLabel: "Music API",
-    featured: false
+    featured: true
+  }
+];
+
+// Skills Data
+const skills = [
+  { name: "HTML", category: "Frontend" },
+  { name: "Tailwind CSS", category: "Frontend" },
+  { name: "JavaScript", category: "Languages" },
+  { name: "React.js", category: "Frontend" },
+  { name: "Node.js", category: "Backend" },
+  { name: "Express.js", category: "Backend" },
+  { name: "MongoDB", category: "Database" },
+  { name: "Postman", category: "Tools" },
+  { name: "GitHub", category: "Tools" }
+];
+
+// Experience Data with Direct Logo URL
+const experiences = [
+  {
+    role: "Service Engineer",
+    company: "Craze Computers",
+    period: "2014 - 2020",
+    description: "NOC operations, L1 support, and peak hour traffic monitoring. Specialized in troubleshooting call failures and ticketing system management.",
+    logo: "/craze-computers.png"
   }
 ];
 
@@ -52,20 +75,26 @@ app.get('/api/projects', (req, res) => {
   res.json(projects);
 });
 
+app.get('/api/skills', (req, res) => {
+  res.json(skills);
+});
+
+app.get('/api/experiences', (req, res) => {
+  res.json(experiences);
+});
+
 app.post('/api/contact', (req, res) => {
   const { name, email, message } = req.body;
   console.log(`New Message from ${name}: ${message}`);
-  // Ingu neengal email anuppum logic-ai serkkalam
   res.status(200).json({ success: true, message: "Message received!" });
 });
 
-// Simple Auth Route (Production-la proper authentication use pannunga)
+// Simple Auth Route
 app.post('/api/auth/login', (req, res) => {
   const { username, password } = req.body;
 
-  // Simple check (neengal database-la store pannunga)
   if (username === 'admin' && password === 'admin123') {
-    const token = 'mock-jwt-token-' + Date.now(); // Real JWT token generate pannunga
+    const token = 'mock-jwt-token-' + Date.now();
     res.json({ success: true, token, message: 'Login successful' });
   } else {
     res.status(401).json({ success: false, message: 'Invalid credentials' });
@@ -74,7 +103,6 @@ app.post('/api/auth/login', (req, res) => {
 
 // Admin Projects CRUD Routes
 app.get('/api/admin/projects', (req, res) => {
-  // Check auth token (simple check)
   const token = req.headers.authorization?.replace('Bearer ', '');
   if (!token || !token.startsWith('mock-jwt-token')) {
     return res.status(401).json({ message: 'Unauthorized' });
@@ -119,7 +147,7 @@ app.put('/api/admin/projects/:id', (req, res) => {
 
   const id = req.params.id;
   const updatedProject = req.body;
-  const index = projects.findIndex(p => p.id == id);
+  const index = projects.findIndex(p => p._id == id || p.id == id);
 
   if (index !== -1) {
     projects[index] = { ...projects[index], ...updatedProject };
@@ -136,7 +164,7 @@ app.delete('/api/admin/projects/:id', (req, res) => {
   }
 
   const id = req.params.id;
-  const index = projects.findIndex(p => p.id == id);
+  const index = projects.findIndex(p => p._id == id || p.id == id);
 
   if (index !== -1) {
     projects.splice(index, 1);

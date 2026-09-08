@@ -10,6 +10,7 @@ const Education = () => {
           <h2 className="text-4xl font-black uppercase tracking-tight">Education</h2>
         </div>
         <div className="max-w-4xl mx-auto">
+          {/* Polytechnic College */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -35,18 +36,19 @@ const Education = () => {
             </div>
             <p className="text-slate-500 leading-relaxed ml-0 md:ml-18 italic">Seplanatham, Vadalur</p>
           </motion.div>
-          {/* School Education (SSLC/HSC) */}
+
+          {/* School Education (NLC BOYS HSSC) */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm hover:bg-slate-800/40 hover:border-blue-500/30 transition-all group"
+            className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm hover:bg-slate-800/40 hover:border-blue-500/30 transition-all group mt-6"
           >
             <div className="flex flex-col md:flex-row justify-between mb-4 gap-2">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center border border-slate-700 shrink-0 overflow-hidden group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all">
                   <img
-                    src="/nlc-logo.png"
+                    src="https://companieslogo.com/img/orig/NLCINDIA.NS-fdcb06f1.png?t=1746769885"
                     alt="NLC Logo"
                     className="w-full h-full object-contain p-2 transition-transform duration-300 group-hover:scale-110"
                     onError={(e) => { e.target.src = "https://img.icons8.com/color/96/school.png"; }}

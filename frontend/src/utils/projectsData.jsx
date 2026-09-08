@@ -1,8 +1,6 @@
-import React from 'react';
-import { Plane, Car, Music } from 'lucide-react';
+import { Briefcase, Plane, Car, Music, Utensils, Columns } from 'lucide-react';
 
 export const FALLBACK_PROJECTS = [
- 
   {
     title: 'Flight Ticket Booking',
     description: 'A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.',
@@ -41,6 +39,7 @@ export const FALLBACK_PROJECTS = [
     liveLabel: 'Music Streaming App',
     githubUrl: 'https://github.com/yogeshwaranjs131-ui/music-app.git',
     backendLink: 'https://music-app-2wy9.onrender.com/',
+    featured: true,
   },
 ];
 

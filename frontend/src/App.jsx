@@ -14,6 +14,7 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   const [dynamicProjects, setDynamicProjects] = useState([]);
+  const [experiences, setExperiences] = useState([]);
   const [isProjectsLoading, setIsProjectsLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState(null);
   const canvasRef = useRef(null);
@@ -23,7 +24,9 @@ function App() {
   const profilePhotoUrl = '/my-photo.jpg';
   const resumeUrl = 'https://drive.google.com/file/d/1v4XasrgcCUTQ7CSRkz7Nk8GNmiNeFndu/view';
   const nsdcCertificateImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzhHCKU8uyjyCfIiyeYtJRLMN8QbPlN7kFqBhvJE2fCw&s=10';
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://your-backend-name.onrender.com';
+  
+  // Local-ல் ஒர்க் ஆக http://localhost:5000 பயன்படுத்தப்பட்டுள்ளது
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   const fetchProjects = useCallback(() => {
     setIsProjectsLoading(true);
@@ -42,9 +45,24 @@ function App() {
       });
   }, [API_BASE_URL]);
 
+  const fetchExperiences = useCallback(() => {
+    fetch(`${API_BASE_URL}/api/experiences`, { signal: AbortSignal.timeout(5000) })
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch experiences');
+        return res.json();
+      })
+      .then((data) => {
+        setExperiences(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => {
+        console.warn('Failed to fetch experiences:', err);
+      });
+  }, [API_BASE_URL]);
+
   useEffect(() => {
     fetchProjects();
-  }, [fetchProjects]);
+    fetchExperiences();
+  }, [fetchProjects, fetchExperiences]);
 
   const basename = window.location.pathname.includes('/my-portfolio') ? '/my-portfolio' : '';
 
@@ -57,6 +75,7 @@ function App() {
             <PortfolioPage
               dynamicProjects={dynamicProjects}
               isProjectsLoading={isProjectsLoading}
+              experiences={experiences}
               API_BASE_URL={API_BASE_URL}
               githubUrl={githubUrl}
               linkedinUrl={linkedinUrl}

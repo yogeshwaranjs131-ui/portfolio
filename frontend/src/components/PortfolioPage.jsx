@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Plane, Car, Music, Utensils, Columns } from 'lucide-react';
-import { EXPERIENCES } from '../utils/projectsData.jsx';
 import Navbar from './Navbar.jsx';
 import Hero from './Hero.jsx';
 import Experience from './Experience.jsx';
@@ -18,6 +17,7 @@ const TITLES = ['Admin Assistant', 'Full Stack Developer', 'IT Infrastructure En
 const PortfolioPage = ({
   dynamicProjects,
   isProjectsLoading,
+  experiences,
   API_BASE_URL,
   githubUrl,
   linkedinUrl,
@@ -259,7 +259,7 @@ const PortfolioPage = ({
         profilePhotoUrl={profilePhotoUrl}
       />
 
-      <Experience experiences={EXPERIENCES} />
+      <Experience experiences={experiences} />
 
       <CertificationSection nsdcCertificateImageUrl={nsdcCertificateImageUrl} />
 
