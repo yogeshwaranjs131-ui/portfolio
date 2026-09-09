@@ -62,7 +62,7 @@ const ProjectDetailsModal = ({ selectedProject, setSelectedProject }) => {
                 )}
               </div>
               <div className="p-8 md:p-12 overflow-y-auto max-h-[70vh]">
-                <h3 className="text-3xl font-black mb-4 text-white uppercase">{selectedProject.title}</h3>
+                <h3 className="text-3xl font-black mb-4 text-amber-400 uppercase">{selectedProject.title}</h3>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {selectedProject.tech?.map((t, i) => (
                     <span key={i} className="px-3 py-1 bg-blue-600/10 border border-blue-500/20 rounded-full text-[10px] font-bold text-blue-500 uppercase tracking-widest">{t}</span>

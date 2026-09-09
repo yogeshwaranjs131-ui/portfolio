@@ -8,7 +8,7 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <p className="text-blue-500 font-bold text-xs uppercase tracking-widest mb-2">Technical Expertise</p>
-          <h2 className="text-4xl font-black mb-8 italic">Multi-Disciplinary Expertise</h2>
+          <h2 className="text-4xl font-black mb-8 italic text-amber-400">Multi-Disciplinary Expertise</h2>
           <div className="space-y-10">
             <div>
               <h3 className="text-lg font-bold mb-4 flex items-center gap-2 uppercase tracking-widest text-slate-400"><Code className="w-5 h-5" /> Web Development</h3>

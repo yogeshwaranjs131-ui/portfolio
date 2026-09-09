@@ -8,7 +8,7 @@ const Footer = ({ formData, setFormData, handleSubmit, isSubmitting, submitStatu
         <div className="grid md:grid-cols-2 gap-20">
           <div>
             <p className="text-blue-400 font-bold uppercase tracking-widest text-sm mb-6">Let's Connect</p>
-            <h2 className="text-5xl font-black mb-10 leading-tight">Crafting Digital <br />Excellence.</h2>
+            <h2 className="text-5xl font-black mb-10 leading-tight text-amber-400">Crafting Digital <br />Excellence.</h2>
             <div className="space-y-6">
               <a href="mailto:yogeshwaranjs131@gmail.com" className="flex items-center gap-6 group">
                 <div className="bg-slate-800 p-5 rounded-2xl group-hover:bg-blue-600 transition-all"><Mail className="w-8 h-8" /></div>

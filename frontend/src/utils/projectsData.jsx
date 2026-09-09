@@ -3,8 +3,8 @@ import { Briefcase, Plane, Car, Music, Utensils, Columns } from 'lucide-react';
 export const FALLBACK_PROJECTS = [
   {
     title: 'Flight Ticket Booking',
-    description: 'A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.',
-    tech: ['React', 'Amadeus API', 'Context API', 'Tailwind CSS'],
+    description: 'A flight booking platform offering real-time flight search, price comparison, secure seat selection, PNR status check, PDF ticket download, and booking history tracking.',
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'PDFKitnd CSS', 'PDFKit'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
     images: [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
@@ -31,8 +31,8 @@ export const FALLBACK_PROJECTS = [
   },
   {
     title: 'Music Streaming App',
-    description: "A premium audio platform with high-fidelity streaming, playlist curation, and a modern 'Glassmorphic' UI design using React.",
-    tech: ['React', 'Web Audio API', 'Context API', 'Tailwind'],
+    description: "A full-stack MERN music streaming platform featuring a MongoDB database, RESTful APIs, secure user authentication, playlist curation, comment system, and an admin panel with Multer-powered audio/image uploads, styled with a modern 'Glassmorphic' UI.",
+    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind', 'Web Audio API'],
     image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
     icon: <Music className="w-5 h-5 text-blue-600" />,
     liveLink: 'https://musicappstream.netlify.app/',
@@ -71,7 +71,7 @@ export const EXPERIENCES = [
   {
     role: 'Service Engineer',
     company: 'Craze Computers',
-    logo: '/craze computer logo.png',
+    logo: '/craze-computers.png',
     period: '2014 - 2020',
     description:
       'NOC operations, L1 support, and peak hour traffic monitoring. Specialized in troubleshooting call failures and ticketing system management.',

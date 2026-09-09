@@ -15,7 +15,7 @@ const Projects = ({ displayProjects, isProjectsLoading, setSelectedProject }) =>
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
           <div>
             <p className="text-blue-500 font-bold text-xs uppercase tracking-widest mb-2">Development Portfolio</p>
-            <h2 className="text-4xl font-black uppercase tracking-tight">Projects Showcase</h2>
+            <h2 className="text-4xl font-black uppercase tracking-tight text-amber-400">Projects Showcase</h2>
           </div>
         </div>
 
@@ -107,7 +107,7 @@ const ProjectCard = ({ project, idx, setSelectedProject }) => (
             ))}
           </div>
         </div>
-        <h3 className="text-2xl font-bold mb-3 text-white">{project.title}</h3>
+        <h3 className="text-2xl font-bold mb-3 text-amber-400">{project.title}</h3>
         <p className="text-slate-400 text-sm leading-relaxed mb-6">{project.description}</p>
       </div>
     </div>

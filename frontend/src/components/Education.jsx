@@ -7,7 +7,7 @@ const Education = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-blue-500 font-bold text-xs uppercase tracking-widest mb-2">Academic Foundation</p>
-          <h2 className="text-4xl font-black uppercase tracking-tight">Education</h2>
+          <h2 className="text-4xl font-black uppercase tracking-tight text-amber-400">Education</h2>
         </div>
         <div className="max-w-4xl mx-auto">
           {/* Polytechnic College */}

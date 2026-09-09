@@ -8,7 +8,7 @@ const Experience = ({ experiences }) => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <p className="text-blue-500 font-bold text-xs uppercase tracking-widest mb-2">Professional Experience</p>
-          <h2 className="text-4xl font-black text-white">Professional Journey</h2>
+          <h2 className="text-4xl font-black text-amber-400">Professional Journey</h2>
         </div>
         <div className="max-w-4xl mx-auto space-y-8">
           {experiences.map((exp, idx) => (

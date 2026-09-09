@@ -13,7 +13,7 @@ const projects = [
   {
     _id: 'proj2',
     title: "Flight Ticket Booking",
-    description: "A flight booking platform offering real-time flight search, price comparison, and secure seat reservation.",
+    description: "A flight booking platform offering real-time flight search, price comparison, secure seat selection, PNR status check, PDF ticket download, and booking history tracking.",
     tech: ["React", "Amadeus API", "Context API", "Tailwind CSS"],
     image: "https://png.pngtree.com/thumb_back/fh260/background/20230704/pngtree-d-render-and-illustration-of-an-airplane-departing-from-the-runway-image_3740857.jpg",
     liveLink: "https://flightappc.netlify.app/",
@@ -36,8 +36,8 @@ const projects = [
   {
     _id: 'proj4',
     title: "Music Streaming App",
-    description: "A premium audio platform with high-fidelity streaming, playlist curation, and a modern 'Glassmorphic' UI design using React.",
-    tech: ["React", "Web Audio API", "Context API", "Tailwind"],
+    description: "A full-stack MERN music streaming platform featuring a MongoDB database, RESTful APIs, secure user authentication, playlist curation, comment system, and an admin panel with Multer-powered audio/image uploads, styled with a modern 'Glassmorphic' UI.",
+    tech: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind", "Web Audio API"],
     githubUrl: "https://github.com/yogeshwaranjs131-ui/music-app.git",
     image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80",
     liveLink: "https://musicappstream.netlify.app/",

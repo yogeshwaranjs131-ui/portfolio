@@ -10,7 +10,7 @@ const CertificationSection = ({ nsdcCertificateImageUrl }) => {
           
           <div className="flex-1 z-10">
             <div className="inline-block px-4 py-1 rounded-full bg-blue-600/20 text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-6 border border-blue-500/20">Credential</div>
-            <h2 className="text-4xl md:text-5xl font-black mb-6">MERN Stack Certified</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-amber-400">MERN Stack Certified</h2>
             <p className="text-slate-400 text-lg mb-8 max-w-xl">
               Successfully completed the <strong>Master of Full Stack Development</strong> program at{' '}
               <a 
