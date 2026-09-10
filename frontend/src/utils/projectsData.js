@@ -4,8 +4,8 @@ export const FALLBACK_PROJECTS = [
  
   {
     title: 'Flight Ticket Booking',
-    description: 'A flight booking platform offering real-time flight search, price comparison, secure seat selection, PNR status check, PDF ticket download, and booking history tracking.',
-    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'PDFKitnd CSS', 'PDFKit'],
+    description: 'A React, Amadeus API, Context API, Tailwind CSS flight booking platform with real-time flight search, price comparison, secure seat selection, PNR status tracking, Stripe API payment integration, and PDF ticket download experience.',
+    tech: ['React', 'Amadeus API', 'Context API', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'Stripe API', 'PDFKit'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
     images: [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
@@ -22,7 +22,7 @@ export const FALLBACK_PROJECTS = [
   {
     title: 'Car Rental Software',
     description: 'A real-world, complete car rental solution featuring vehicle availability tracking, online booking, secure payment processing, and automated email notifications.',
-    tech: ['React', 'Redux', 'Node.js', 'Stripe API'],
+    tech: ['React', 'Redux', 'Node.js', 'Razorpay API'],
     image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80',
     liveLink: 'https://car-rental-software.vercel.app/',
     icon: <Car className="w-5 h-5 text-blue-600" />,

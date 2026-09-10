@@ -3,15 +3,15 @@ import { Briefcase, Plane, Car, Music, Utensils, Columns } from 'lucide-react';
 export const FALLBACK_PROJECTS = [
   {
     title: 'Flight Ticket Booking',
-    description: 'A flight booking platform offering real-time flight search, price comparison, secure seat selection, PNR status check, PDF ticket download, and booking history tracking.',
-    tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'PDFKitnd CSS', 'PDFKit'],
+    description: 'A React, Amadeus API, Context API, and Tailwind CSS flight booking platform with real-time flight search, price comparison, secure seat selection, PNR status tracking, Stripe API payment integration with 18% GST tax calculation, and PDF ticket download experience.',
+    tech: ['React', 'Amadeus API', 'Context API', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'Stripe API', 'PDFKit'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
     images: [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6L8601jeyp8_wszygE-sr00DW8iZUn_SBjoubdyujpdJcTYS6zgx2mFc8&s=10',
     ],
-    icon: <Plane className="w-5 h-5 text-blue-600" />,
+    icon: <Plane className="w-5 h-5 text-yellow-400" />,
     liveLink: 'https://flightappc.netlify.app/',
     liveLabel: 'my-flight',
     githubUrl: 'https://github.com/yogeshwaranjs131-ui/flight-booking-app.git',
@@ -21,20 +21,20 @@ export const FALLBACK_PROJECTS = [
   {
     title: 'Car Rental Software',
     description: 'A real-world, complete car rental solution featuring vehicle availability tracking, online booking, secure payment processing, and automated email notifications.',
-    tech: ['React', 'Redux', 'Node.js', 'Stripe API'],
+    tech: ['React', 'Redux', 'Node.js', 'Express.js', 'MongoDB', 'Razorpay API', 'PDFKit'],
     image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=80',
     liveLink: 'https://car-rental-software.vercel.app/',
-    icon: <Car className="w-5 h-5 text-blue-600" />,
+    icon: <Car className="w-5 h-5 text-yellow-400" />,
     githubUrl: 'https://github.com/yogeshwaranjs131-ui/Car-Rental-Software.git',
     featured: true,
     backendLink: 'https://car-rental-software.onrender.com/',
   },
   {
     title: 'Music Streaming App',
-    description: "A full-stack MERN music streaming platform featuring a MongoDB database, RESTful APIs, secure user authentication, playlist curation, comment system, and an admin panel with Multer-powered audio/image uploads, styled with a modern 'Glassmorphic' UI.",
+    description: "A full-stack MERN music streaming platform featuring a MongoDB database, RESTful APIs, secure user authentication, playlist curation, a comment system, and an admin panel with Multer-powered audio/image uploads, styled with a modern 'Glassmorphic' UI.",
     tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind', 'Web Audio API'],
     image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80',
-    icon: <Music className="w-5 h-5 text-blue-600" />,
+    icon: <Music className="w-5 h-5 text-yellow-400" />,
     liveLink: 'https://musicappstream.netlify.app/',
     liveLabel: 'Music Streaming App',
     githubUrl: 'https://github.com/yogeshwaranjs131-ui/music-app.git',
@@ -50,7 +50,7 @@ export const EXPERIENCES = [
     period: 'February 4, 2026 – Present',
     logo: 'https://graph.facebook.com/winterfeelhotelsandresorts/picture?type=large',
     description:
-      'Directing front-desk operations, guest relations, and resort administration. Managing financial reporting, payroll, and staff onboarding while optimizing room pricing strategies.',
+      'Directing front-desk operations, guest relations, and resort administration. Managing financial reporting, payroll, and staff onboarding while optimizing room pricing strategies.'
   },
   {
     role: 'IT Engineer',
@@ -58,7 +58,7 @@ export const EXPERIENCES = [
     logo: 'https://media.licdn.com/dms/image/v2/C4E0BAQFC07r755Ia7w/company-logo_200_200/company-logo_200_200/0/1644488611278?e=2147483647&v=beta&t=EBEUDI7AjnAvA600qdaUv-l4-BCHZGUAMqJ5AxkPdtY',
     period: 'April 2025 - August 2025',
     description:
-      'Orchestrated enterprise IT infrastructure and SD-WAN configurations. Spearheaded network security protocols and resolved complex system bottlenecks for global-scale operations.',
+      'Orchestrated enterprise IT infrastructure and SD-WAN configurations. Spearheaded network security protocols and resolved complex system bottlenecks for global-scale operations.'
   },
   {
     role: 'Desktop Support Engineer',
@@ -66,7 +66,7 @@ export const EXPERIENCES = [
     logo: 'https://media.licdn.com/dms/image/v2/D560BAQH-UN7ngi-q3w/company-logo_200_200/company-logo_200_200/0/1684309453088/ittechies_logo?e=2147483647&v=beta&t=CaSHyDR8VmXMXPA3B1YexyJCTY447eOZOkmbvi8nRhU',
     period: '2023 - 2024',
     description:
-      'Delivered high-level technical support and hardware lifecycle management. Optimized network performance and enforced rigorous system security and user access controls.',
+      'Delivered high-level technical support and hardware lifecycle management. Optimized network performance and enforced rigorous system security and user access controls.'
   },
   {
     role: 'Service Engineer',
@@ -74,6 +74,6 @@ export const EXPERIENCES = [
     logo: '/craze-computers.png',
     period: '2014 - 2020',
     description:
-      'NOC operations, L1 support, and peak hour traffic monitoring. Specialized in troubleshooting call failures and ticketing system management.',
+      'NOC operations, L1 support, and peak hour traffic monitoring. Specialized in troubleshooting call failures and ticketing system management.'
   },
 ];
